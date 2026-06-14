@@ -3,14 +3,20 @@
 <head>
 <title>MCQ Test</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script>
 function checkAnswer() {
     let score = 0;
 
-    if(document.getElementById("q1b").checked)
-        score++;
+    if(document.getElementById("q1b").checked) score++;
+    if(document.getElementById("q2a").checked) score++;
+    if(document.getElementById("q3c").checked) score++;
+    if(document.getElementById("q4b").checked) score++;
+    if(document.getElementById("q5d").checked) score++;
 
-    alert("Your Score = " + score + "/1");
+    let percentage = (score/5)*100;
+
+    alert("Your Score = " + score + "/5\nPercentage = " + percentage + "%");
 }
 </script>
 
@@ -20,17 +26,42 @@ function checkAnswer() {
 <h1>📝 Online MCQ Test</h1>
 
 <p>1. What is the SI unit of Force?</p>
-
 <input type="radio" name="q1"> Joule<br>
 <input type="radio" id="q1b" name="q1"> Newton<br>
 <input type="radio" name="q1"> Watt<br>
 <input type="radio" name="q1"> Pascal<br><br>
 
+<p>2. Which planet is known as the Red Planet?</p>
+<input type="radio" id="q2a" name="q2"> Mars<br>
+<input type="radio" name="q2"> Earth<br>
+<input type="radio" name="q2"> Jupiter<br>
+<input type="radio" name="q2"> Venus<br><br>
+
+<p>3. H₂O is the chemical formula of?</p>
+<input type="radio" name="q3"> Oxygen<br>
+<input type="radio" name="q3"> Hydrogen<br>
+<input type="radio" id="q3c" name="q3"> Water<br>
+<input type="radio" name="q3"> Carbon Dioxide<br><br>
+
+<p>4. 2 + 2 = ?</p>
+<input type="radio" name="q4"> 3<br>
+<input type="radio" id="q4b" name="q4"> 4<br>
+<input type="radio" name="q4"> 5<br>
+<input type="radio" name="q4"> 6<br><br>
+
+<p>5. Which is the largest ocean?</p>
+<input type="radio" name="q5"> Indian Ocean<br>
+<input type="radio" name="q5"> Arctic Ocean<br>
+<input type="radio" name="q5"> Atlantic Ocean<br>
+<input type="radio" id="q5d" name="q5"> Pacific Ocean<br><br>
+
 <button onclick="checkAnswer()">Submit Test</button>
 
 <br><br>
 
-<a href="index.html">🏠 Home Page</a>
+<a href="index.html">
+<button>🏠 Home Page</button>
+</a>
 
 </body>
 </html>
