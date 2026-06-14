@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MCQ Practice</title>
+<title>MCQ Test</title>
+
+<script>
+function checkAnswer() {
+    let score = 0;
+
+    if(document.getElementById("q1b").checked)
+        score++;
+
+    alert("Your Score = " + score + "/1");
+}
+</script>
+
 </head>
 <body>
-<h1>📝 MCQ Practice</h1>
-<p>MCQ Section Coming Soon</p>
+
+<h1>📝 Online MCQ Test</h1>
+
+<p>1. What is the SI unit of Force?</p>
+
+<input type="radio" name="q1"> Joule<br>
+<input type="radio" id="q1b" name="q1"> Newton<br>
+<input type="radio" name="q1"> Watt<br>
+<input type="radio" name="q1"> Pascal<br><br>
+
+<button onclick="checkAnswer()">Submit Test</button>
+
+<br><br>
+
 <a href="index.html">🏠 Home Page</a>
+
 </body>
 </html>
