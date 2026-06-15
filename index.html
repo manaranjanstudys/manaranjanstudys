@@ -1,68 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>ManaranjanStudys - Free Notes, MCQs & PYQs</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Free Class 11 PCM Notes, MCQs, PYQs and Study Materials">
 
 <style>
-body{
+*{
     margin:0;
+    padding:0;
+    box-sizing:border-box;
     font-family:Arial,sans-serif;
+}
+
+body{
     background:#f4f6f9;
 }
 
+/* HEADER */
 header{
-    background:#0d6efd;
+    background:linear-gradient(135deg,#0d6efd,#00c6ff);
     color:white;
     text-align:center;
-    padding:30px 15px;
+    padding:40px 15px;
 }
 
 .logo{
-    width:120px;
+    width:90px;
     border-radius:10px;
+    margin-bottom:10px;
 }
 
+/* CONTAINER */
+.container{
+    width:95%;
+    max-width:1100px;
+    margin:auto;
+}
+
+/* CARDS */
 .card{
     background:white;
-    margin:15px;
+    margin:15px 0;
     padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
-    text-align:center;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 
+/* BUTTON */
 .btn{
     display:inline-block;
     background:#0d6efd;
     color:white;
     text-decoration:none;
-    padding:10px 20px;
-    border-radius:5px;
+    padding:10px 18px;
+    border-radius:6px;
     margin-top:10px;
 }
 
+/* SEARCH */
 .search-box{
     text-align:center;
-    margin:20px;
+    margin:20px 0;
 }
 
 .search-box input{
-    width:80%;
+    width:90%;
     max-width:400px;
     padding:12px;
-    border-radius:5px;
+    border-radius:6px;
     border:1px solid #ccc;
 }
 
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+/* VISITOR COUNTER */
+.counter{
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    color:#0d6efd;
+}
+
+/* FOOTER */
 footer{
     background:#222;
     color:white;
     text-align:center;
     padding:20px;
-    margin-top:20px;
+    margin-top:30px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    header h1{
+        font-size:22px;
+    }
 }
 </style>
 </head>
@@ -75,37 +114,85 @@ footer{
     <p>Free Notes • MCQs • PYQs • Study Materials</p>
 </header>
 
-<div class="search-box">
-    <input type="text" placeholder="Search Notes, MCQs, PYQs...">
-</div>
+<div class="container">
 
-<div class="card">
-    <h2>📚 Notes</h2>
-    <p>Class 11 PCM Notes</p>
-    <a class="btn" href="notes.html">Open Notes</a>
-</div>
+    <!-- VISITOR COUNTER -->
+    <div class="card counter">
+        👁️ Visitors: <span id="visitCount">0</span>
+    </div>
 
-<div class="card">
-    <h2>📝 MCQ Practice</h2>
-    <p>Practice Questions Coming Soon</p>
-    <a class="btn" href="mcq.html">Open MCQ</a>
-</div>
+    <!-- SEARCH -->
+    <div class="search-box">
+        <input type="text" placeholder="Search Notes, MCQs, PYQs...">
+    </div>
 
-<div class="card">
-    <h2>📄 Previous Year Questions</h2>
-    <p>Important PYQs For Students</p>
-    <a class="btn" href="pyq.html">Open PYQ</a>
-</div>
+    <!-- LATEST UPDATES -->
+    <div class="card">
+        <h2>🔥 Latest Updates</h2>
+        <ul>
+            <li>📘 Class 11 Physics Notes Added</li>
+            <li>🧪 Chemistry MCQs Coming Soon</li>
+            <li>📄 New PYQ Section Updated</li>
+        </ul>
+    </div>
 
-<div class="card">
-    <h2>🏆 Our Toppers</h2>
-    <p>Success Stories Of Students</p>
+    <!-- ABOUT -->
+    <div class="card">
+        <h2>ℹ️ About Us</h2>
+        <p>
+            ManaranjanStudys ek free education platform hai jahan Class 11 PCM students ke liye notes,
+            MCQs aur previous year questions provide kiye jate hain.
+        </p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="grid">
+
+        <div class="card">
+            <h2>📚 Notes</h2>
+            <p>Class 11 PCM Notes</p>
+            <a class="btn" href="notes.html">Open Notes</a>
+        </div>
+
+        <div class="card">
+            <h2>📝 MCQ Practice</h2>
+            <p>Practice Questions</p>
+            <a class="btn" href="mcq.html">Open MCQ</a>
+        </div>
+
+        <div class="card">
+            <h2>📄 PYQs</h2>
+            <p>Previous Year Questions</p>
+            <a class="btn" href="pyq.html">Open PYQ</a>
+        </div>
+
+        <div class="card">
+            <h2>🏆 Toppers</h2>
+            <p>Success Stories</p>
+        </div>
+
+    </div>
+
 </div>
 
 <footer>
     <p>© 2026 ManaranjanStudys</p>
     <p>📧 manaranjans350@gmail.com</p>
 </footer>
+
+<!-- VISITOR COUNTER SCRIPT -->
+<script>
+let count = localStorage.getItem("visitCount");
+
+if(!count){
+    count = 1;
+} else {
+    count = parseInt(count) + 1;
+}
+
+localStorage.setItem("visitCount", count);
+document.getElementById("visitCount").innerText = count;
+</script>
 
 </body>
 </html>
