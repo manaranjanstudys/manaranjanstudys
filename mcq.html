@@ -1,67 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>MCQ Test</title>
+<meta charset="UTF-8">
+<title>MCQ Test System | ManaranjanStudys</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>
-function checkAnswer() {
-    let score = 0;
-
-    if(document.getElementById("q1b").checked) score++;
-    if(document.getElementById("q2a").checked) score++;
-    if(document.getElementById("q3c").checked) score++;
-    if(document.getElementById("q4b").checked) score++;
-    if(document.getElementById("q5d").checked) score++;
-
-    let percentage = (score/5)*100;
-
-    alert("Your Score = " + score + "/5\nPercentage = " + percentage + "%");
+<style>
+body{
+    font-family:Arial;
+    margin:0;
+    background:#f4f6f9;
 }
-</script>
 
+header{
+    background:linear-gradient(135deg,#0d6efd,#00c6ff);
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:15px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+select,button{
+    padding:10px;
+    width:100%;
+    margin-top:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+button{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.option{
+    display:block;
+    margin:6px 0;
+    padding:10px;
+    background:#eee;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#ddd;
+}
+
+.correct{
+    background:#28a745 !important;
+    color:white;
+}
+
+.wrong{
+    background:#dc3545 !important;
+    color:white;
+}
+
+.result{
+    font-size:18px;
+    font-weight:bold;
+    color:#0d6efd;
+}
+
+.hide{
+    display:none;
+}
+</style>
 </head>
+
 <body>
 
-<h1>📝 Online MCQ Test</h1>
+<header>
+<h1>📝 Chapter Wise MCQ Test</h1>
+</header>
 
-<p>1. What is the SI unit of Force?</p>
-<input type="radio" name="q1"> Joule<br>
-<input type="radio" id="q1b" name="q1"> Newton<br>
-<input type="radio" name="q1"> Watt<br>
-<input type="radio" name="q1"> Pascal<br><br>
+<div class="container">
 
-<p>2. Which planet is known as the Red Planet?</p>
-<input type="radio" id="q2a" name="q2"> Mars<br>
-<input type="radio" name="q2"> Earth<br>
-<input type="radio" name="q2"> Jupiter<br>
-<input type="radio" name="q2"> Venus<br><br>
+<!-- SETUP -->
+<div class="card" id="setupBox">
+<h2>Select Subject</h2>
 
-<p>3. H₂O is the chemical formula of?</p>
-<input type="radio" name="q3"> Oxygen<br>
-<input type="radio" name="q3"> Hydrogen<br>
-<input type="radio" id="q3c" name="q3"> Water<br>
-<input type="radio" name="q3"> Carbon Dioxide<br><br>
+<select id="subject">
+    <option value="physics">Physics</option>
+    <option value="chemistry">Chemistry</option>
+    <option value="math">Maths</option>
+    <option value="it">IT</option>
+</select>
 
-<p>4. 2 + 2 = ?</p>
-<input type="radio" name="q4"> 3<br>
-<input type="radio" id="q4b" name="q4"> 4<br>
-<input type="radio" name="q4"> 5<br>
-<input type="radio" name="q4"> 6<br><br>
+<button onclick="startTest()">Start Test</button>
+</div>
 
-<p>5. Which is the largest ocean?</p>
-<input type="radio" name="q5"> Indian Ocean<br>
-<input type="radio" name="q5"> Arctic Ocean<br>
-<input type="radio" name="q5"> Atlantic Ocean<br>
-<input type="radio" id="q5d" name="q5"> Pacific Ocean<br><br>
+<!-- QUIZ -->
+<div class="card hide" id="quizBox">
+<h2 id="chapterTitle"></h2>
+<div id="questionBox"></div>
+</div>
 
-<button onclick="checkAnswer()">Submit Test</button>
+<!-- RESULT -->
+<div class="card hide" id="resultBox">
+<h2>📊 Result</h2>
+<p id="resultText"></p>
+<button onclick="location.reload()">🔁 Try Again</button>
+</div>
 
-<br><br>
+</div>
 
-<a href="index.html">
-<button>🏠 Home Page</button>
-</a>
+<script>
+
+let questions = [
+{
+q:"Physics is study of?",
+o:["Life","Matter","Energy","Universe"],
+a:3
+},
+{
+q:"SI unit of force?",
+o:["Newton","Joule","Watt","Pascal"],
+a:0
+},
+{
+q:"Velocity is?",
+o:["Scalar","Vector","Mass","Time"],
+a:1
+}
+];
+
+let current=0;
+let score=0;
+let wrong=0;
+let answered=false;
+
+function startTest(){
+document.getElementById("setupBox").classList.add("hide");
+document.getElementById("quizBox").classList.remove("hide");
+showQuestion();
+}
+
+function showQuestion(){
+
+if(current>=questions.length){
+showResult();
+return;
+}
+
+answered=false;
+
+let q=questions[current];
+
+document.getElementById("chapterTitle").innerText="Question "+(current+1);
+
+let html="<h3>"+q.q+"</h3>";
+
+q.o.forEach((opt,i)=>{
+html+=`<div class='option' onclick='checkAnswer(this,${i})'>${opt}</div>`;
+});
+
+document.getElementById("questionBox").innerHTML=html;
+}
+
+function checkAnswer(el,i){
+
+if(answered) return;
+answered=true;
+
+let q=questions[current];
+let options=document.getElementsByClassName("option");
+
+// mark correct answer green
+options[q.a].classList.add("correct");
+
+if(i===q.a){
+score++;
+}else{
+el.classList.add("wrong");
+wrong++;
+}
+
+setTimeout(()=>{
+current++;
+showQuestion();
+},1000);
+}
+
+function showResult(){
+
+document.getElementById("quizBox").classList.add("hide");
+document.getElementById("resultBox").classList.remove("hide");
+
+let total=questions.length;
+let correct=score;
+let incorrect=wrong;
+
+// simple rank system
+let rank="";
+let percent=(correct/total)*100;
+
+if(percent>=80) rank="🏆 Excellent";
+else if(percent>=60) rank="👍 Good";
+else if(percent>=40) rank="🙂 Average";
+else rank="📚 Need Improvement";
+
+document.getElementById("resultText").innerHTML=
+"Total Questions: "+total+
+"<br>Correct: "+correct+
+"<br>Wrong: "+incorrect+
+"<br><br>Rank: "+rank;
+}
+
+</script>
 
 </body>
 </html>
