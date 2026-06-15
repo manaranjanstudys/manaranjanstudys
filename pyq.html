@@ -1,34 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Previous Year Questions</title>
+<meta charset="UTF-8">
+
+<title>Class 11 PYQ | Previous Year Questions | ManaranjanStudys</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- SEO -->
+<meta name="description" content="Download Class 11 Physics, Chemistry, Maths and IT Previous Year Questions (PYQ) free PDF.">
+<meta name="keywords" content="Class 11 PYQ, Physics PYQ, Chemistry PYQ, Maths PYQ, Previous Year Questions PDF, Free Study Material">
+<meta name="author" content="ManaranjanStudys">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Class 11 PYQ - ManaranjanStudys">
+<meta property="og:description" content="Free Previous Year Questions for Class 11 PCM">
+<meta property="og:type" content="website">
+
 <style>
 body{
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background:#f4f6f9;
     text-align:center;
     padding:10px;
+    margin:0;
 }
 
+/* HEADER */
+h1{
+    color:#0d6efd;
+    margin-top:20px;
+}
+
+/* CARD */
 .card{
     background:white;
     margin:20px auto;
     padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 5px gray;
+    border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
     width:90%;
+    max-width:700px;
+    transition:0.2s;
 }
 
+.card:hover{
+    transform:scale(1.01);
+}
+
+/* BUTTON */
 button{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:12px 20px;
-    border-radius:5px;
+    padding:12px 18px;
+    border-radius:6px;
     font-size:16px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#0b5ed7;
+}
+
+/* HOME BUTTON */
+.home{
+    display:inline-block;
+    margin-top:20px;
+    background:#222;
+    color:white;
+    padding:12px 18px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .card{
+        width:95%;
+    }
 }
 </style>
 
@@ -36,33 +87,33 @@ button{
 
 <body>
 
-<h1>📄 Previous Year Questions</h1>
+<h1>📄 Previous Year Questions (PYQ)</h1>
 
 <div class="card">
-    <h2>Physics PYQ</h2>
-    <button>Download PDF</button>
+    <h2>📘 Physics PYQ</h2>
+    <p>Chapter-wise Important Questions</p>
+    <button onclick="alert('PDF link add karo')">Download PDF</button>
 </div>
 
 <div class="card">
-    <h2>Chemistry PYQ</h2>
-    <button>Download PDF</button>
+    <h2>🧪 Chemistry PYQ</h2>
+    <p>Important Exam Questions</p>
+    <button onclick="alert('PDF link add karo')">Download PDF</button>
 </div>
 
 <div class="card">
-    <h2>Math PYQ</h2>
-    <button>Download PDF</button>
+    <h2>➗ Maths PYQ</h2>
+    <p>Previous Year Exam Questions</p>
+    <button onclick="alert('PDF link add karo')">Download PDF</button>
 </div>
 
 <div class="card">
-    <h2>IT PYQ</h2>
-    <button>Download PDF</button>
+    <h2>💻 IT PYQ</h2>
+    <p>Computer & IT Questions</p>
+    <button onclick="alert('PDF link add karo')">Download PDF</button>
 </div>
 
-<br>
-
-<a href="index.html">
-<button>🏠 Home Page</button>
-</a>
+<a class="home" href="index.html">🏠 Back to Home</a>
 
 </body>
 </html>
